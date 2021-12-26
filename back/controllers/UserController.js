@@ -1,3 +1,3 @@
 const User=require('../models/User');
-exports.createUser=(req, res, next) => {}
-exports.updateUser=(req, res, next) => {}
+exports.signup=(req, res, next) => {}
+exports.login=(req, res, next) => {}

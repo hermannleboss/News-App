@@ -1,5 +1,7 @@
 const express = require('express');
 const mongoose=require('mongoose');
+const userRoutes=require('./route/UserRoute');
+const newsRoutes=require('./route/NewsRoute');
 
 const app = express();
 mongoose.connect('mongodb+srv://admin:admin@cluster0.wvu2u.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
@@ -15,7 +17,6 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
     next();
 });
-app.use( function (req, res) {
-    res.send('hello world')
-})
+app.use('/api/news', newsRoutes);
+app.use('/api/auth', userRoutes);
 module.exports = app;

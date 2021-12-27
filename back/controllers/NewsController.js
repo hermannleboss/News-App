@@ -22,13 +22,11 @@ exports.deleteNews = (req, res, next) => {
                     error: new Error('Object not found')
                 });
             }
-            /*
-            Check of auth of user
             if (news.userId != req.auth.userId) {
                 return res.status(401).json({
                     error: new Error('Request not authorized')
                 });
-            }*/
+            }
             News.deleteOne({_id: req.params.id})
                 .then(() => res.status(200).json({message: 'Object Deleted'}))
                 .catch(error => res.status(400).json({error}));

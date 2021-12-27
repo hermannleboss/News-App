@@ -5,10 +5,10 @@ function ListNews(){
     return(
         <div>
             <h2>List Of News</h2>
-            <div className="flex flex-wrap -m-4 mt-3">
+            <div className="grid grid-cols-4 gap-4 m-4 mt-3">
                 {
                     newsList.map((news)  => (
-                        <NewsCard key={news.title}></NewsCard>
+                        <NewsCard key={news.title} news={news}></NewsCard>
                     ))
                 }
             </div>

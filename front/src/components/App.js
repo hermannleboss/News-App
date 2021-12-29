@@ -6,7 +6,7 @@ import ListNews from "./ListNews";
 
 function App() {
     return (
-        <div className="App">
+        <div className="App bg-neutral-900 text-white">
             <Nav></Nav>
             <div className="App-content">
                 <CreateNews></CreateNews>

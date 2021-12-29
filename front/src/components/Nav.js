@@ -1,9 +1,11 @@
+import '../styles/Header.scss'
+import logo from '../assets/logo.svg';
 import Login from "./Login"
 
 function Nav(){
     return(
-        <div>
-            <h2>Nav bar</h2>
+        <div className="App-header">
+            <img src={logo} className="App-header--logo" alt="logo"/>
             <Login></Login>
         </div>
     )

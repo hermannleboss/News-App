@@ -10,7 +10,6 @@ function App() {
             <Nav></Nav>
             <div className="App-content">
                 <CreateNews></CreateNews>
-                <Action></Action>
                 <ListNews></ListNews>
             </div>
         </div>

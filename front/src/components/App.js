@@ -8,7 +8,7 @@ function App() {
     return (
         <div className="App">
             <Nav></Nav>
-            <div>
+            <div className="App-content">
                 <CreateNews></CreateNews>
                 <Action></Action>
                 <ListNews></ListNews>

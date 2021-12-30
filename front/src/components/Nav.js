@@ -1,4 +1,4 @@
-import '../styles/Header.scss'
+import '../styles/Nav.scss'
 import logo from '../assets/logo.svg';
 import Login from "./Login"
 import '../styles/index.css'

@@ -2,7 +2,7 @@ import NewsCard from "./NewsCard";
 import {useEffect, useState} from "react";
 import axios from "axios"
 
-function ListNews() {
+function ListNews({newsListUpdated, updateNewsListUpdated}) {
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -20,10 +20,12 @@ function ListNews() {
                 setData(null);
             } finally {
                 setLoading(false);
+                updateNewsListUpdated(false);
             }
         };
         getData();
-    }, []);
+    }, [newsListUpdated]);
+
     return (
         <div>
             <h2>List Of News</h2>
@@ -33,10 +35,11 @@ function ListNews() {
                 {error && (
                     <div>{`There is a problem fetching the post data - ${error}`}</div>
                 )}
-                {data && data.map((news) => (
+                {newsListUpdated ? data && data.map((news) => (
                     <NewsCard key={news._id} news={news}></NewsCard>
-                ))
-                }
+                )) : data && data.map((news) => (
+                    <NewsCard key={news._id} news={news}></NewsCard>
+                ))}
             </div>
         </div>
     )

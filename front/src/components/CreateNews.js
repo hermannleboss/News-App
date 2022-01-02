@@ -1,7 +1,7 @@
 import {useForm} from "react-hook-form";
 import axios from "axios"
 
-function CreateNews({userId, token}) {
+function CreateNews({userId, token, newsListUpdated, updateNewsListUpdated}) {
 
     const {register, handleSubmit, formState: {errors}} = useForm();
     console.log(errors);
@@ -19,8 +19,6 @@ function CreateNews({userId, token}) {
 
             <form onSubmit={handleSubmit((data) => {
                 data["userId"] = userId;
-                console.log(data);
-
                 axios({
                     method: 'post',
                     url: 'http://localhost:3001/api/news',
@@ -31,9 +29,9 @@ function CreateNews({userId, token}) {
                 })
                     .then(function (response) {
                         console.log(["log de la reponse", response]);
+                        updateNewsListUpdated(true);
                     })
                     .catch(function (error) {
-
                         console.log(["log de l'erreur", error]);
                     });
             })}>

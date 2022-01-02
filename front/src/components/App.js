@@ -9,6 +9,8 @@ function App() {
     const [isAuth, updateAuth] = useState(false)
     const [token, updateToken] = useState(null)
     const [userId, updateUserId] = useState(null)
+    const [updateCounter, updateUpdateCounter] = useState(0)
+    const [newsListUpdated, updateNewsListUpdated] = useState(false)
     return (
         <div className="App bg-neutral-900 text-white">
             <Nav
@@ -16,8 +18,13 @@ function App() {
                 token={token} updateToken={updateToken}
                 userId={userId} updateUserId={updateUserId}/>
             <div className="App-content">
-                <CreateNews token={token} userId={userId}/>
-                <ListNews/>
+                <CreateNews token={token} userId={userId}
+                            newsListUpdated={newsListUpdated} updateNewsListUpdated={updateNewsListUpdated}/>
+                {
+                    newsListUpdated ?
+                        <ListNews newsListUpdated={newsListUpdated} updateNewsListUpdated={updateNewsListUpdated}/> :
+                        <ListNews newsListUpdated={newsListUpdated} updateNewsListUpdated={updateNewsListUpdated}/>
+                }
             </div>
         </div>
     );

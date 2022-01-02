@@ -7,14 +7,6 @@ function UpdateNews ({userId, token, newsListUpdated, updateNewsListUpdated, mod
         defaultValues: modeData
     });
     console.log(errors);
-    const config = {
-        headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MWM5ZTY3N2M4YzdmYWYzNDY4Yzk4MmIiLCJpYXQiOjE2NDEwNzkwOTksImV4cCI6MTY0MTE2NTQ5OX0.T-2JITJgwOzyODA27bI-1qC6HthAm5-CBW1Sdtg4Gpw"
-        }
-    };
-
     return (
         <div>
             <h2>Update News</h2>

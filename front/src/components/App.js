@@ -44,6 +44,7 @@ function App() {
                     mode === "update" ?
                         <UpdateNews token={token} userId={userId}
                                     newsListUpdated={newsListUpdated}
+                                    modeData={modeData}
                                     updateNewsListUpdated={updateNewsListUpdated}/> : ""
                 }
                 {

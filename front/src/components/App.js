@@ -78,9 +78,11 @@ function App() {
 
                 {
                     newsListUpdated ?
-                        <ListNews newsListUpdated={newsListUpdated} updateNewsListUpdated={updateNewsListUpdated}
+                        <ListNews token={token} newsListUpdated={newsListUpdated}
+                                  updateNewsListUpdated={updateNewsListUpdated}
                                   updateMode={updateMode} updateModeData={updateModeData}/> :
-                        <ListNews newsListUpdated={newsListUpdated} updateNewsListUpdated={updateNewsListUpdated}
+                        <ListNews token={token} newsListUpdated={newsListUpdated}
+                                  updateNewsListUpdated={updateNewsListUpdated}
                                   updateMode={updateMode} updateModeData={updateModeData}/>
                 }
             </div>

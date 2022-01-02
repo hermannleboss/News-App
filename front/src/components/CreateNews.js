@@ -2,7 +2,6 @@ import {useForm} from "react-hook-form";
 import axios from "axios"
 
 function CreateNews({userId, token, newsListUpdated, updateNewsListUpdated}) {
-
     const {register, handleSubmit, formState: {errors}} = useForm();
     console.log(errors);
     const config = {

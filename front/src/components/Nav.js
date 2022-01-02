@@ -1,6 +1,5 @@
 import '../styles/Nav.scss'
 import logo from '../assets/logo.svg';
-import Login from "./Login"
 import Form from "./Form"
 import '../styles/index.css'
 import {useState} from "react";

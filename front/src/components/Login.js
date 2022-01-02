@@ -3,7 +3,7 @@ import {useForm} from "react-hook-form";
 import axios from "axios"
 
 
-function Login() {
+function Login({updateAuth, updateToken, updateUserId}) {
     const {register, handleSubmit, formState: {errors}} = useForm();
     console.log(errors);
     return (
@@ -18,7 +18,12 @@ function Login() {
                 })
                     .then(function (response) {
                         console.log("Vous êtes Connecté")
-                        console.log(response);
+                        //console.log(response.data);
+                        updateAuth(true);
+                        updateUserId(response.data.userId);
+                        updateToken(response.data.token);
+                        //console.log(userId)
+                        //console.log(token)
                     })
                     .catch(function (error) {
                         console.log(error);

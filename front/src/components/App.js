@@ -1,7 +1,6 @@
 import '../styles/App.css';
 import Nav from './Nav';
 import CreateNews from "./CreateNews";
-import Action from "./Action";
 import ListNews from "./ListNews";
 
 function App() {

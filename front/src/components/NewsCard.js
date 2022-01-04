@@ -9,7 +9,7 @@ function CreateNews({isAuth, news, token, updateMode, updateModeData, updateNews
             updateModeData(news)
         }}>
             <img className="h-40 rounded w-full object-full object-center mb-6"
-                 src={logo} alt="content"/>
+                 src={news.imageUrl} alt="content"/>
             <h2 className="text-lg font-medium title-font mb-4">{news.title}</h2>
             <p className="leading-relaxed text-base">{news.description}</p>
             {

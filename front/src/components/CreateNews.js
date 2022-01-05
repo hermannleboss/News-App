@@ -43,10 +43,10 @@ function CreateNews({userId, token, newsListUpdated, updateNewsListUpdated}) {
                         h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"/>
                 </div>
                 <div className="relative mb-4">
-                    <label htmlFor="imageUrl" className="leading-7 text-gray-300">ImageUrl</label>
+                    <label htmlFor="imageUrl" className="leading-7 text-gray-300">Image</label>
                     <input
                         {...register("imageUrl", {required: true})}
-                        type="imageUrl" id="imageUrl" name="imageUrl"
+                        type="file" id="imageUrl" name="imageUrl"
                         className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
                 </div>
                 <button

@@ -1,8 +1,10 @@
 const News = require('../models/News');
 exports.createNews = (req, res, next) => {
-    delete req.body._id;
+    const newsObject=JSON.parse(req.body.news);
+    delete newsObject._id;
     const news = new News({
-        ...req.body
+        ...newsObject,
+        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     });
     news.save()
         .then(() => res.status(201).json({message: 'Object saved'}))

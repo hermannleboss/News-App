@@ -56,7 +56,7 @@ function App() {
                     mode === "read" ?
                         <div className="p-6 rounded-lg border-2 border-white rounded-lg">
                             <img className="h-40 rounded w-full object-full object-center mb-6"
-                                 src={logo} alt="content"/>
+                                 src={modeData.imageUrl} alt="content"/>
                             <h2 className="text-lg font-medium title-font mb-4">{modeData.title}</h2>
                             <p className="leading-relaxed text-base">{modeData.description}</p>
                             {

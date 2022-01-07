@@ -5,6 +5,7 @@ import ListNews from "./ListNews";
 import {useState} from "react";
 import UpdateNews from "./UpdateNews";
 import logo from "../assets/logo.svg";
+import axios from "axios";
 
 function App() {
 
@@ -24,24 +25,28 @@ function App() {
                 token={token} updateToken={updateToken}
                 userId={userId} updateUserId={updateUserId}/>
             <div className="App-content">
+
                 {
-                    mode === "create" ?
+                    isAuth && mode === "create" ?
                         <CreateNews token={token} userId={userId}
                                     newsListUpdated={newsListUpdated}
                                     updateNewsListUpdated={updateNewsListUpdated}/> :
                         <div className="flex justify-space-between mt-5">
-                            <button
-                                className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
-                                onClick={() => {
-                                    updateMode("create")
-                                }}
-                            >Create
-                            </button>
+                            {
+                                isAuth ?
+                                    <button
+                                        className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+                                        onClick={() => {
+                                            updateMode("create")
+                                        }}
+                                    >Create
+                                    </button> : ""
+                            }
                         </div>
 
                 }
                 {
-                    mode === "update" ?
+                    isAuth && mode === "update" ?
                         <UpdateNews token={token} userId={userId}
                                     newsListUpdated={newsListUpdated}
                                     modeData={modeData}
@@ -51,37 +56,56 @@ function App() {
                     mode === "read" ?
                         <div className="p-6 rounded-lg border-2 border-white rounded-lg">
                             <img className="h-40 rounded w-full object-full object-center mb-6"
-                                 src={logo} alt="content"/>
+                                 src={modeData.imageUrl} alt="content"/>
                             <h2 className="text-lg font-medium title-font mb-4">{modeData.title}</h2>
                             <p className="leading-relaxed text-base">{modeData.description}</p>
-                            <div className="flex justify-space-between mt-5">
-                                <button
-                                    className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
-                                    onClick={(e) => {
-                                        updateMode("update")
-                                        updateModeData(modeData)
-                                        e.stopPropagation();
-                                    }}
-                                >Update
-                                </button>
-                                <button
-                                    className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg"
-                                    onClick={() => {
-                                        updateMode("delete")
-                                    }}
-                                >Delete
-                                </button>
-                            </div>
+                            {
+                                isAuth ?
+                                    <div className="flex justify-space-between mt-5">
+                                        <button
+                                            className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+                                            onClick={(e) => {
+                                                updateMode("update")
+                                                //console.log(modeData)
+                                                updateModeData(modeData)
+                                                e.stopPropagation();
+                                            }}
+                                        >Update
+                                        </button>
+                                        <button
+                                            className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg"
+                                            onClick={(e) => {
+                                                axios({
+                                                    method: 'delete',
+                                                    url: 'http://localhost:3001/api/news/' + modeData._id,
+                                                    headers: {
+                                                        "Authorization": "Bearer " + token
+                                                    }
+                                                })
+                                                    .then(function (response) {
+                                                        console.log(["log de la reponse", response]);
+                                                        updateMode("delete")
+                                                        e.stopPropagation();
+                                                        updateNewsListUpdated(true);
+                                                    })
+                                                    .catch(function (error) {
+                                                        console.log(["log de l'erreur", error]);
+                                                    });
+                                            }}
+                                        >Delete
+                                        </button>
+                                    </div> : ""
+                            }
                         </div>
                         : ""
                 }
 
                 {
                     newsListUpdated ?
-                        <ListNews token={token} newsListUpdated={newsListUpdated}
+                        <ListNews isAuth={isAuth} token={token} newsListUpdated={newsListUpdated}
                                   updateNewsListUpdated={updateNewsListUpdated}
                                   updateMode={updateMode} updateModeData={updateModeData}/> :
-                        <ListNews token={token} newsListUpdated={newsListUpdated}
+                        <ListNews isAuth={isAuth} token={token} newsListUpdated={newsListUpdated}
                                   updateNewsListUpdated={updateNewsListUpdated}
                                   updateMode={updateMode} updateModeData={updateModeData}/>
                 }

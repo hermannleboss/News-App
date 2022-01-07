@@ -2,7 +2,7 @@ import NewsCard from "./NewsCard";
 import {useEffect, useState} from "react";
 import axios from "axios"
 
-function ListNews({token, newsListUpdated, updateNewsListUpdated, updateMode, updateModeData}) {
+function ListNews({isAuth, token, newsListUpdated, updateNewsListUpdated, updateMode, updateModeData}) {
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -36,9 +36,9 @@ function ListNews({token, newsListUpdated, updateNewsListUpdated, updateMode, up
                     <div>{`There is a problem fetching the post data - ${error}`}</div>
                 )}
                 {newsListUpdated ? data && data.map((news) => (
-                    <NewsCard key={news._id} news={news} token={token} updateMode={updateMode} updateModeData={updateModeData} updateNewsListUpdated={updateNewsListUpdated}></NewsCard>
+                    <NewsCard isAuth={isAuth} key={news._id} news={news} token={token} updateMode={updateMode} updateModeData={updateModeData} updateNewsListUpdated={updateNewsListUpdated}></NewsCard>
                 )) : data && data.map((news) => (
-                    <NewsCard key={news._id} news={news} token={token} updateMode={updateMode} updateModeData={updateModeData}  updateNewsListUpdated={updateNewsListUpdated}></NewsCard>
+                    <NewsCard isAuth={isAuth} key={news._id} news={news} token={token} updateMode={updateMode} updateModeData={updateModeData}  updateNewsListUpdated={updateNewsListUpdated}></NewsCard>
                 ))}
                 {updateNewsListUpdated(false)}
             </div>
